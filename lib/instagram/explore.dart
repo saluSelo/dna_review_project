@@ -1,3 +1,4 @@
+import 'package:dna_course_review_project/instagram/data.dart';
 import 'package:dna_course_review_project/instagram/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -134,7 +135,7 @@ class _explorePageState extends State<explorePage> {
         BottomNavigationBarItem(
           icon: GestureDetector(
             child: Icon(
-              Icons.home,
+              Icons.video_library_outlined,
               color: Colors.black,
               size: 30,
             ),
@@ -160,8 +161,14 @@ class _explorePageState extends State<explorePage> {
               color: Colors.black,
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => profilePage()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => profilePage(
+                        ProfileImage: poster,
+                        bio:
+                            'just a normal nerd who loves marvel and playes videogames',
+                        bio2: 'and playes videogames',
+                        Likes: 9000000,
+                      )));
             },
           ),
           label: '',

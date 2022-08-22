@@ -1,11 +1,22 @@
-import 'package:dna_course_review_project/instagram/instagramPage.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dna_course_review_project/instagram/instagramPage.dart';
 
 import 'explore.dart';
 
 class profilePage extends StatefulWidget {
-  profilePage({Key? key}) : super(key: key);
+  profilePage({
+    Key? key,
+    required this.ProfileImage,
+    required this.bio,
+    required this.bio2,
+    required this.Likes,
+  }) : super(key: key);
 
+  final String ProfileImage;
+  final String bio;
+  final String bio2;
+  final int Likes;
   @override
   State<profilePage> createState() => _profilePageState();
 }
@@ -88,14 +99,14 @@ class _profilePageState extends State<profilePage> {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 12.0),
                                     child: Text(
-                                      "I'm a positive person. I love to travel and eat.",
+                                      "${widget.bio}",
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                   ),
                                   Text(
-                                    "always available for chat.",
+                                    "${widget.bio2}",
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
@@ -219,7 +230,7 @@ class _profilePageState extends State<profilePage> {
                                       Column(
                                         children: [
                                           Text(
-                                            '354K',
+                                            "${widget.Likes}",
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold),
@@ -337,7 +348,7 @@ class _profilePageState extends State<profilePage> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               image: AssetImage(
-                            'images/icon.png',
+                            widget.ProfileImage,
                           )),
                         ),
                       ))
@@ -409,8 +420,7 @@ class _profilePageState extends State<profilePage> {
               size: 30,
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => explorePage()));
+              Navigator.of(context).pop();
             },
           ),
           label: '',
@@ -443,10 +453,7 @@ class _profilePageState extends State<profilePage> {
               Icons.person,
               color: Colors.black,
             ),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => profilePage()));
-            },
+            onTap: () {},
           ),
           label: '',
         ),

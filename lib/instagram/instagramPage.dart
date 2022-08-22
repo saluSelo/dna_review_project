@@ -1,3 +1,4 @@
+import 'package:dna_course_review_project/instagram/data.dart';
 import 'package:dna_course_review_project/instagram/explore.dart';
 import 'package:dna_course_review_project/instagram/profile.dart';
 import 'package:flutter/material.dart';
@@ -56,10 +57,10 @@ class _instaPageState extends State<instaPage> {
                   children: [
                     story(),
                     story(),
-                    notseenstory(),
-                    notseenstory(),
+                    notseenstory(avatarInsta, PostName),
+                    notseenstory(avatarInsta, PostName),
                     story(),
-                    notseenstory(),
+                    notseenstory(avatarInsta, PostName),
                     story(),
                     story(),
                   ],
@@ -69,12 +70,12 @@ class _instaPageState extends State<instaPage> {
               SizedBox(
                 height: 10,
               ),
-              postinsta(),
-              postinsta(),
-              postinsta(),
-              postinsta(),
-              postinsta(),
-              postinsta(),
+              postinsta(poster, PostName),
+              postinsta(poster, PostName),
+              postinsta(poster, PostName),
+              postinsta(poster, PostName),
+              postinsta(poster, PostName),
+              postinsta(poster, PostName),
             ],
           )
         ],
@@ -109,7 +110,7 @@ class _instaPageState extends State<instaPage> {
     );
   }
 
-  Column notseenstory() {
+  Column notseenstory(profileavatar, name) {
     return Column(
       children: [
         Container(
@@ -118,7 +119,7 @@ class _instaPageState extends State<instaPage> {
           margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/icon.png'),
+              image: AssetImage(profileavatar),
               fit: BoxFit.fill,
             ),
             shape: BoxShape.circle,
@@ -129,33 +130,44 @@ class _instaPageState extends State<instaPage> {
           ),
         ),
         Text(
-          'salwan',
+          name,
           style: TextStyle(fontSize: 14),
         )
       ],
     );
   }
 
-  Column postinsta() {
+  Column postinsta(poster, name) {
     return Column(
       children: [
         Row(
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                image: DecorationImage(
-                  image: AssetImage('images/icon.png'),
-                  fit: BoxFit.fill,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => profilePage(
+                          ProfileImage: poster,
+                          bio: 'just a normal nerd who loves marvel',
+                          bio2: 'and playes videogames',
+                          Likes: 9000000,
+                        )));
+              },
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  image: DecorationImage(
+                    image: AssetImage(poster),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                'salwan ',
+                name,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -263,7 +275,7 @@ class _instaPageState extends State<instaPage> {
         BottomNavigationBarItem(
           icon: GestureDetector(
             child: Icon(
-              Icons.home,
+              Icons.video_library_outlined,
               color: Colors.black,
               size: 30,
             ),
@@ -289,8 +301,13 @@ class _instaPageState extends State<instaPage> {
               color: Colors.black,
             ),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => profilePage()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => profilePage(
+                        ProfileImage: poster,
+                        bio: 'just a normal nerd who loves marvel',
+                        bio2: 'and playes videogames',
+                        Likes: 9000000,
+                      )));
             },
           ),
           label: '',
